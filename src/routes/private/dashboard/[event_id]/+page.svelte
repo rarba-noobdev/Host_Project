@@ -1,9 +1,17 @@
 <script lang="ts">
-    import type { Event } from '$lib/userstate/userstate.svelte';
-    let { data } = $props();
+    import { getUserState, type Event } from '$lib/userstate/userstate.svelte';
+    let { data } = $props(); 
     let { event } = $derived(data);
     let editMode = $state(false);
+    let userstate = $state(getUserState())
+    
+    
 </script>
+{#if !event}
+<div class="min-h-screen flex items-center justify-center bg-gray-900">
+  <p class="text-2xl text-gray-400 font-semibold">Event Deleted or Not Found</p>
+</div>
+{/if}
 
 {#if event && !editMode}
 <section class="bg-gray-900"> 
@@ -257,12 +265,17 @@
                     <button onclick={() => {editMode = !editMode}} type="submit" class="px-5 py-2.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                         Cancel
                     </button>
+                    <button  onclick={() => {event?.id && userstate.deleteEventById(event.id)}}  class="px-5 py-2.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Delete Event
+                    </button>
                     <button type="submit" class="px-5 py-2.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Save Changes
                     </button>
+
                 </div>
             </div>
         </div>
     </section>
 </form>
 {/if}
+

@@ -69,6 +69,16 @@ export class UserState {
         return this._events
      }
 
+     async deleteEventById(id:string) {
+        if (!this._supabase) {throw new Error('Supabase client is not initialized.');}
+        if (!this._user) {throw new Error('User is not initialized.');}    
+        let {error} = await this._supabase.from("events").delete().eq("id",id)
+        if (!error) {
+            this._events = this._events.filter((event) => event.id !== id)
+        }
+
+    }
+
 
     async logOut() {
         await this._supabase?.auth.signOut()

@@ -12,10 +12,10 @@ export const load: PageLoad = async ({ params, parent , data }) => {
         .single<Event>();
 
     if (error) {
-        console.error('Error fetching event:', error);
+        
         return {
             event: null as Event | null,
-            error: 'Event not found'
+            error: error
         };
     }   
 
