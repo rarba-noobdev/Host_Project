@@ -55,7 +55,7 @@
 
 		<!-- Call to Action Buttons -->
 		<div class="mb-14 flex flex-col justify-center gap-6 sm:flex-row">
-			<!-- <a
+			<a
 				href="/explore"
 				class="group flex items-center justify-center rounded-full border border-indigo-500 bg-indigo-600/10 px-7 py-3 font-semibold text-indigo-300 shadow-lg transition-all duration-300 hover:bg-indigo-600/30 hover:text-indigo-100"
 			>
@@ -73,26 +73,8 @@
 					></path>
 				</svg>
 				Explore Events
-			</a> -->
-			<a
-				href="/private/dashboard"
-				class="group flex items-center justify-center rounded-full border border-emerald-500 bg-emerald-600/10 px-7 py-3 font-semibold text-emerald-300 shadow-lg transition-all duration-300 hover:bg-emerald-600/30 hover:text-emerald-100"
-			>
-				<svg
-					class="mr-2 h-5 w-5 transition-transform group-hover:translate-x-1"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-					></path>
-				</svg>
-				Host New Event
 			</a>
+
 		</div>
 
 		<!-- Event Statistics -->

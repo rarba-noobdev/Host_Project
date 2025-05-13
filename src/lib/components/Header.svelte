@@ -44,7 +44,7 @@
 					>
 						<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
 					</svg>
-					<span class="whitespace-nowrap">Host Event</span>
+					<span class="whitespace-nowrap">Your Events</span>
 				</a>
 				<a
 					href="/private/dashboard"

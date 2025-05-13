@@ -9,6 +9,7 @@ interface userStateObject {
 }
 
 export interface Event {
+    statusText?: string
     booked_slots?: number
     color: string
     created_at?: string | null
@@ -59,8 +60,8 @@ export class UserState {
 
     async getEvents() {
         if (!this._supabase) {throw new Error('Supabase client is not initialized.');}
-        if (!this._user) {throw new Error('User is not initialized.');}
-        const { data, error } = await this._supabase.from('events').select('*').eq("managed_by", this.user?.id);
+        // if (!this._user) {throw new Error('User is not initialized.');}
+        const { data, error } = await this._supabase.from('events').select('*');
         if (error) {
             console.error('Error fetching events:', error)
             return []
@@ -69,17 +70,17 @@ export class UserState {
         return this._events
      }
 
-     async deleteEventById(id:string) {
-        if (!this._supabase) {throw new Error('Supabase client is not initialized.');}
-        if (!this._user) {throw new Error('User is not initialized.');}    
-        let {error} = await this._supabase.from("events").delete().eq("id",id)
-        if (!error) {
-            this._events = this._events.filter((event) => event.id !== id)
+     async registerEvent(eventId : string) {
+                if (!this._supabase) {throw new Error('Supabase client is not initialized.');}
+                if (!this._user) {throw new Error('User is not initialized.');}
+                const {error} = await this._supabase.from("registrations").insert({event_id:eventId,user_id:this._user.id})
+                if (error) {
+                                console.error('Error fetching events:', error)
+            return null
+                
         }
-
-    }
-
-
+     }
+     
     async logOut() {
         await this._supabase?.auth.signOut()
        goto('/auth')
